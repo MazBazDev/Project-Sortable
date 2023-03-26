@@ -505,6 +505,43 @@ function getFuzzySearchString(searchString) {
 		.map((char) => char + ".*")
 		.join("");
 }
+function setModalDatas(hero) {
+	selectedHero = hero.id
+	updateUrl()
 
+	const contentDiv = document.querySelector(".content");
+	contentDiv.innerHTML = "";
+
+	const centerDiv = document.createElement("div");
+	centerDiv.classList.add("center");
+
+	const image = document.createElement("img");
+	image.src = hero.images.md;
+	centerDiv.appendChild(image);
+
+	contentDiv.appendChild(centerDiv);
+
+	const details = document.createElement("ul");
+	contentDiv.appendChild(details);
+
+	for (const [key, value] of Object.entries(hero)) {
+		if (typeof value === "object" && key !== "images") {
+			const sublist = document.createElement("ul");
+			for (const [subKey, subValue] of Object.entries(value)) {
+				const listItem = document.createElement("li");
+				listItem.textContent = `${subKey}: ${subValue}`;
+				sublist.appendChild(listItem);
+			}
+			const listItem = document.createElement("li");
+			listItem.textContent = key;
+			listItem.appendChild(sublist);
+			details.appendChild(listItem);
+		} else if (key !== "images") {
+			const listItem = document.createElement("li");
+			listItem.textContent = `${key}: ${value}`;
+			details.appendChild(listItem);
+		}
+	}
+}
 
 loadDatas();
