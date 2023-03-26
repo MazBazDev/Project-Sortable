@@ -200,30 +200,7 @@ const loadDatas = () => {
 		.then(displayDatas);
 };
 
-function addLine(...params) {
-	var nouvelleLigne = table.insertRow(-1);
-	for (let index = 0; index < params.length - 1; index++) {
-		const param = params[index];
-		if (typeof param === "object" && param !== null) {
-			let objectValue = "";
-			for (const key in param) {
-				let value = "";
 
-				if (isNaN(Number.parseInt(key))) {
-					value = capitalizeFirstLetter(key) + ":";
-				}
-
-				objectValue += `${value} ${param[key]} <br>`;
-			}
-			nouvelleLigne.insertCell(index).innerHTML = objectValue;
-		} else {
-			if (index == 0) {
-				nouvelleLigne.insertCell(index).innerHTML = `<img src="${param}">`;
-			} else {
-				nouvelleLigne.insertCell(index).innerHTML = param;
-			}
-		}
-	}
 
 	nouvelleLigne.insertCell(-1).innerHTML = `<a class="button" href="#popup" data-id="${params[params.length - 1].id}"><i class="bi bi-eye"></i></a>`;
 
