@@ -9,41 +9,104 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
+    <button onclick="topFunction()" id="goTop" title="Go to top"><i class="bi bi-chevron-double-up"></i></button>
+    <div class="container-title">
+        <div class="title"> SORTABLE </div>
+        <div class="name">BY MAZIGH, LEO ET MANON</div>
+    </div>
     <div class="filters">
         <div class="filter">
             <label>Page size</label>
-            <select name="" id="">
-                <option value="">10</option>
-                <option value="">20</option>
-                <option value="">50</option>
-                <option value="">100</option>
-                <option value="">All</option>
+            <select id="pageSize">
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="all">All</option>
             </select>
         </div>
+
         <div class="filter">
             <label>Search</label>
-            <input type="text">
+            <input type="text" id="search">
+            <label for="">Search Type</label>
+            <select id="inputType">
+                <option  value="inc">Include</option>
+                <option  value="exc">Exclude</option>
+                <option  value="fuz">Fuzzy</option>
+                <option  value="eq">Equal</option>
+                <option  value="neq">Not equal</option>
+                <option  value="gt">Greater than</option>
+                <option  value="ls">Lesser than</option>
+            </select>
+            <label for="">on</label>
+            <select id="fields">
+                <option  value="name">Name</option>
+                <option  value="fullName">Full name</option>
+                <option  value="power">Power stats</option>
+                <option  value="race">Race</option>
+                <option  value="gender">Gender</option>
+                <option  value="height">Height</option>
+                <option  value="weight">Weight</option>
+                <option  value="placeOfBirth">Place of birth</option>
+                <option  value="alignment">Alignment</option>
+            </select>
+        </div>
+        <div class="center">
+            <div class="" id="pagination"></div>
         </div>
     </div>
 
     <table>
         <thead>
             <tr>
-              <th scope="col">Icon</th>
-              <th scope="col">Name</th>
-              <th scope="col">Full Name</th>
-              <th scope="col">Powerstats</th>
-              <th scope="col">Race</th>
-              <th scope="col">Gender</th>
-              <th scope="col">Heigth</th>
-              <th scope="col">Weight</th>
-              <th scope="col">Place Of Birth</th>
-              <th scope="col">Alignement</th>
+                <th scope="col">Icon</th>
+                <th scope="col" data-sort-by="name" data-sort="false" data-status="ascending">Name <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col" data-sort-by="fullName" data-sort="false" data-status="ascending">Full Name <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col" data-sort-by="powerstats" data-sort="false" data-status="ascending">Powerstats <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col" data-sort-by="race" data-sort="false" data-status="ascending">Race <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col" data-sort-by="gender" data-sort="false" data-status="ascending">Gender <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col" data-sort-by="height" data-sort="false" data-status="ascending">Heigth <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col" data-sort-by="weight" data-sort="false" data-status="ascending">Weight <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col" data-sort-by="placeOfBirth" data-sort="false" data-status="ascending">Place Of Birth <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col" data-sort-by="alignment" data-sort="false" data-status="ascending">Alignement <i class="bi bi-sort-alpha-down"></i> <i class="bi bi-sort-alpha-up-alt"></i></th>
+                <th scope="col">Show</th>
             </tr>
         </thead>
-        <tbody>
-        </tbody>
+        <tbody></tbody>
+        <div class="center">
+            <div class="" id="pagination"></div>
+        </div>
     </table>
+
+    <div id="popup" class="overlay">
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <div class="content"></div>
+        </div>
+    </div>
 </body>
 <script src="/assets/js/index.js"></script>
+
+<script>
+    // Get the button
+    let goTop = document.getElementById("goTop");
+    
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        goTop.style.display = "block";
+      } else {
+        goTop.style.display = "none";
+      }
+    }
+    
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+    </script>
 </html>
