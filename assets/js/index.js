@@ -475,31 +475,7 @@ function filterheros(heros) {
 }
 
 
-function getValueFromField(hero, field) {
-	let value = null;
 
-	if (field === "name") {
-		value = hero.name.toLowerCase();
-	} else if (field === "fullName") {
-		value = hero.biography.fullName.toLowerCase();
-	} else if (field === "power") {
-		value = Object.values(hero.powerstats).reduce((total, num) => total + num, 0);
-	} else if (field === "race") {
-		value = hero.appearance.race;
-	} else if (field === "gender") {
-		value = hero.appearance.gender;
-	} else if (field === "height") {
-		value = Number.parseInt(hero.appearance.height[1]);
-	} else if (field === "weight") {
-		value = Number.parseInt(hero.appearance.weight[1]);
-	} else if (field === "placeOfBirth") {
-		value = hero.biography.placeOfBirth;
-	} else if (field === "alignment") {
-		value = hero.biography.alignment;
-	}
-
-	return value;
-}
 
 function getFuzzySearchString(searchString) {
 	return searchString
