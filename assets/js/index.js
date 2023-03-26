@@ -443,6 +443,36 @@ function convertPower(hero) {
 	return Object.values(hero).reduce((total, value) => total + value);
 }
 
+function filterheros(heros) {
+	return heros.filter((hero) => {
+		const value = getValueFromField(hero, searchField);
+		if (value === null) {
+			return false;
+		}
+
+		switch (searchType) {
+			case "inc":
+				return value.toLowerCase().includes(search);
+			case "exc":
+				return !value.toLowerCase().includes(search);
+			case "fuz":
+				return (
+					value.toLowerCase().includes(search) ||
+					value.toLowerCase().includes(getFuzzySearchString(search))
+				);
+			case "eq":
+				return value === search || value === Number.parseInt(search);
+			case "neq":
+				return !(value === search || value === Number.parseInt(search));
+			case "gt":
+				return value > Number.parseInt(search);
+			case "ls":
+				return value < Number.parseInt(search);
+			default:
+				return false;
+		}
+	});
+}
 
 
 function getValueFromField(hero, field) {
